@@ -99,3 +99,16 @@ REVOKE UPDATE ON BOOK_S FROM librarian;
 ![alt text](<Screenshot 2026-01-26 143645.png>)
 ![alt text](<Screenshot 2026-01-26 143656.png>)
 ![alt text](<Screenshot 2026-01-26 143706.png>)
+
+### 6. Learning Outcome
+
+This practical session provided significant insights into:
+Structural Logic: Understanding how Foreign Keys and Check Constraints
+maintain high data quality and prevent logical errors.
+
+Security Implementation: Learning to manage database security through roles
+rather than individual user permissions.
+
+Practical Application: Applying SQL fundamentals to a real-world scenario
+(Library Management), demonstrating how relational databases handle
+complex interactions between entities. 
