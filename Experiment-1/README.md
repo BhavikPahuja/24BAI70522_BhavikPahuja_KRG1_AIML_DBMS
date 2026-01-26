@@ -27,3 +27,5 @@
    • Technical Proficiency: Gained hands-on experience with PostgreSQL and pgAdmin.
    • Security Awareness: Understood the implementation of RBAC in professional database environments.
    • Relational Integrity: Mastered the use of foreign keys to maintain data consistency.
+
+<img width="722" height="413" alt="Screenshot 2026-01-26 143706" src="https://github.com/user-attachments/assets/b3c08044-9f0e-4f83-acb4-d72b748e3157" />
