@@ -1,31 +1,101 @@
-🧪 Experiment 1: Library Management System
+# 🧪 Experiment 1: Library Management System
 
-1. Aim & Objective
-   To design and implement a robust Library Management System database. The focus is on establishing relational integrity through constraints and implementing Role-Based Access Control (RBAC) to ensure data security.
-   Key Objectives:
-   • Implement DDL (Data Definition Language), DML (Data Manipulation Language), and DCL (Data Control Language) operations.
-   • Apply data integrity constraints: PRIMARY KEY, FOREIGN KEY, NOT NULL, and CHECK.
-   • Manage database security via password-protected roles and privilege management.
-2. Tools Used
-   • Database: PostgreSQL 16+
-   • Interface: pgAdmin 4
-   • Language: SQL (Structured Query Language)
-3. Database Schema
-   The system utilizes three primary tables to manage the library workflow:
-   • BOOK_S: Stores catalog information (Book ID, Title, Author).
-   • LIBRARY_VISITORS: Manages member details (Visitor ID, Name, City).
-   • BOOK_ISSUE: Tracks transaction records (Issue ID, Book ID, Visitor ID, Date).
-4. Procedure & Implementation
-5. Schema Definition: Execute CREATE TABLE commands with appropriate data types and constraints.
-6. Schema Modification: Utilize ALTER commands to add columns or refine constraints.
-7. Data Population: Insert sample records (e.g., Book: "Harry Potter", Visitor: "Sumir Malhotra").
-8. Security Setup:
-   o Create a Librarian role with a secure password.
-   o Grant Permissions: Provide SELECT, INSERT, and UPDATE access to the Librarian.
-   o Revoke Permissions: Demonstrate how to restrict access using the REVOKE command.
-9. Learning Outcomes
-   • Technical Proficiency: Gained hands-on experience with PostgreSQL and pgAdmin.
-   • Security Awareness: Understood the implementation of RBAC in professional database environments.
-   • Relational Integrity: Mastered the use of foreign keys to maintain data consistency.
+**Domain:** Database Management Systems (PostgreSQL)
 
-<img width="722" height="413" alt="Screenshot 2026-01-26 143706" src="https://github.com/user-attachments/assets/b3c08044-9f0e-4f83-acb4-d72b748e3157" />
+---
+
+## 1. Aim of the Session
+
+To design, implement, and secure a relational database for a **Library Management System**. The session focuses on the lifecycle of data—from defining structures to enforcing security protocols through Role-Based Access Control (RBAC).
+
+---
+
+## 2. Objectives & Procedure
+
+### Key Objectives
+
+- **Core SQL Operations:** Execute **DDL** (Definition), **DML** (Manipulation), and **DCL** (Control) commands.
+- **Data Integrity:** Enforce business rules using `PRIMARY KEY`, `FOREIGN KEY`, `NOT NULL`, and `CHECK` constraints.
+- **Security Architecture:** Implement password-protected roles to simulate a professional environment.
+
+### Procedure of the Experiment
+
+1.  **Environment Setup:** Initialize the PostgreSQL server via pgAdmin 4.
+2.  **Schema Construction:** Define the relational structure using `CREATE` statements.
+3.  **Refinement:** Use `ALTER` commands to simulate real-world schema evolution.
+4.  **Population:** Seed the database with valid test data.
+5.  **Access Control:** Create a 'Librarian' role and manage granular permissions.
+
+---
+
+## 3. Practical / Experiment Steps
+
+### Step I: Schema Definition (DDL)
+
+We establish the foundational tables with strict relational integrity.
+
+```sql
+-- Creating the Book Catalog
+CREATE TABLE BOOK_S (
+    Book_ID INT PRIMARY KEY,
+    Title VARCHAR(100) NOT NULL,
+    Author VARCHAR(50)
+);
+
+-- Creating the Visitor Registry
+CREATE TABLE LIBRARY_VISITORS (
+    Visitor_ID INT PRIMARY KEY,
+    V_Name VARCHAR(50) NOT NULL,
+    City VARCHAR(30) CHECK (City IN ('Delhi', 'Mumbai', 'Bangalore', 'Chandigarh'))
+);
+
+-- Creating Transaction Logs (Linking Books to Visitors)
+CREATE TABLE BOOK_ISSUE (
+    Issue_ID SERIAL PRIMARY KEY,
+    Book_ID INT REFERENCES BOOK_S(Book_ID),
+    Visitor_ID INT REFERENCES LIBRARY_VISITORS(Visitor_ID),
+    Issue_Date DATE DEFAULT CURRENT_DATE
+);
+
+```
+
+### Step II: Data Population (DML)
+
+```sql
+INSERT INTO BOOK_S VALUES (101, 'Harry Potter', 'J.K. Rowling');
+INSERT INTO LIBRARY_VISITORS VALUES (501, 'Sumir Malhotra', 'Delhi');
+INSERT INTO BOOK_ISSUE (Book_ID, Visitor_ID) VALUES (101, 501);
+```
+
+### Step III: Security & Control (DCL)
+
+```sql
+-- Creating a restricted role
+CREATE ROLE librarian WITH LOGIN PASSWORD 'secure_pass123';
+
+-- Granting specific privileges
+GRANT SELECT, INSERT, UPDATE ON ALL TABLES IN SCHEMA public TO librarian;
+
+-- Testing revocation
+REVOKE UPDATE ON BOOK_S FROM librarian;
+```
+
+![alt text](<Screenshot 2026-01-26 143129.png>)
+![alt text](<Screenshot 2026-01-26 143139.png>)
+![alt text](<Screenshot 2026-01-26 143153.png>)
+![alt text](<Screenshot 2026-01-26 143203.png>)
+![alt text](<Screenshot 2026-01-26 143212.png>)
+![alt text](<Screenshot 2026-01-26 143220.png>)
+![alt text](<Screenshot 2026-01-26 143228.png>)
+![alt text](<Screenshot 2026-01-26 143240.png>)
+![alt text](<Screenshot 2026-01-26 143246.png>)
+![alt text](<Screenshot 2026-01-26 143253.png>)
+![alt text](<Screenshot 2026-01-26 143258.png>)
+![alt text](<Screenshot 2026-01-26 143306.png>)
+![alt text](<Screenshot 2026-01-26 143518.png>)
+![alt text](<Screenshot 2026-01-26 143524.png>)
+![alt text](<Screenshot 2026-01-26 143535.png>)
+![alt text](<Screenshot 2026-01-26 143543.png>)
+![alt text](<Screenshot 2026-01-26 143645.png>)
+![alt text](<Screenshot 2026-01-26 143656.png>)
+![alt text](<Screenshot 2026-01-26 143706.png>)
