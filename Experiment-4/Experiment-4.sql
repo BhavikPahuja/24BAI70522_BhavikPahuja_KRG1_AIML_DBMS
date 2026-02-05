@@ -1,0 +1,75 @@
+SET SERVEROUTPUT ON;
+
+-- Block 1: Positive/Negative Check
+DECLARE
+    NUM NUMBER := -21;
+BEGIN
+    IF NUM > 0 THEN
+        DBMS_OUTPUT.PUT_LINE('IT IS A POSITIVE NUMBER');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('IT IS A NON-POSITIVE NUMBER');
+    END IF;
+END;
+/
+
+-- Block 2: Grade Calculation
+DECLARE
+    MARKS NUMBER := 68;
+    GRADE VARCHAR2(1);
+BEGIN
+    IF MARKS >= 90 THEN
+        GRADE := 'A';
+    ELSIF MARKS >= 80 THEN
+        GRADE := 'B';
+    ELSIF MARKS >= 70 THEN
+        GRADE := 'C';
+    ELSIF MARKS >= 60 THEN
+        GRADE := 'D';
+    ELSE
+        GRADE := 'F';
+    END IF;
+
+    DBMS_OUTPUT.PUT_LINE('MARKS = ' || MARKS || ', GRADE = ' || GRADE);
+END;
+/
+
+-- Block 3: Performance Classification
+DECLARE
+    MARKS NUMBER := 58;
+    PERFORMANCE VARCHAR2(20);
+BEGIN
+    IF MARKS >= 75 THEN
+        PERFORMANCE := 'DISTINCTION';
+    ELSIF MARKS >= 60 THEN
+        PERFORMANCE := 'FIRST CLASS';
+    ELSIF MARKS >= 50 THEN
+        PERFORMANCE := 'SECOND CLASS';
+    ELSIF MARKS >= 35 THEN
+        PERFORMANCE := 'PASS';
+    ELSE
+        PERFORMANCE := 'FAIL';
+    END IF;
+
+    DBMS_OUTPUT.PUT_LINE('MARKS = ' || MARKS || ' AND PERFORMANCE = ' || PERFORMANCE);
+END;
+/
+
+-- Block 4: Day Selection (CASE Statement)
+DECLARE
+    DAYNUM NUMBER := 3;
+    DAYNAME VARCHAR2(20);
+BEGIN
+    DAYNAME := CASE DAYNUM
+        WHEN 1 THEN 'SUNDAY'
+        WHEN 2 THEN 'MONDAY'
+        WHEN 3 THEN 'TUESDAY'
+        WHEN 4 THEN 'WEDNESDAY'
+        WHEN 5 THEN 'THURSDAY'
+        WHEN 6 THEN 'FRIDAY'
+        WHEN 7 THEN 'SATURDAY'
+        ELSE 'INVALID DAY'
+    END;
+    
+    DBMS_OUTPUT.PUT_LINE('IT IS ' || DAYNAME);
+END;
+/
